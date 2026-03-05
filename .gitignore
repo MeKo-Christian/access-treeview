@@ -1,0 +1,32 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio
+.vs/
+*.DotSettings.user
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+## NuGet
+**/packages/*
+*.nupkg
+**/[Pp]ackages/
+project.lock.json
+project.fragment.lock.json
+
+## JetBrains Rider
+.idea/
+*.sln.iml
+
+## OS files
+.DS_Store
+Thumbs.db
