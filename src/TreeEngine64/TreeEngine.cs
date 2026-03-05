@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace MeKo.TreeEngine;
@@ -18,7 +20,51 @@ public class TreeEngine : ITreeEngine
 
     public void Initialize(string connectionString, object context = null)
     {
-        // Will be wired to OleDbProvider in Task 1.6
+        var (dbConnectionString, config) = ParseConnectionString(connectionString);
+
+        var dbProvider = new DbProvider(
+            connectionString: dbConnectionString,
+            providerName: config.GetValueOrDefault("DbProvider", "System.Data.OleDb"),
+            tableName: config.GetValueOrDefault("Table", "tblTreeNodes"),
+            idColumn: config.GetValueOrDefault("IdCol", "NodeID"),
+            parentIdColumn: config.GetValueOrDefault("ParentCol", "ParentID"),
+            captionColumn: config.GetValueOrDefault("CaptionCol", "NodeText"),
+            iconKeyColumn: config.GetValueOrDefault("IconCol", null)
+        );
+
+        _provider = new CachingProviderDecorator(dbProvider);
+    }
+
+    public static (string DbConnectionString, Dictionary<string, string> Config) ParseConnectionString(string connectionString)
+    {
+        var customKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "Table", "IdCol", "ParentCol", "CaptionCol", "IconCol", "DbProvider"
+        };
+
+        var config = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var dbParts = new List<string>();
+
+        // Split on semicolons, preserving key=value pairs
+        var parts = connectionString.Split(';', StringSplitOptions.RemoveEmptyEntries);
+        foreach (var part in parts)
+        {
+            var trimmed = part.Trim();
+            var eqIndex = trimmed.IndexOf('=');
+            if (eqIndex > 0)
+            {
+                var key = trimmed.Substring(0, eqIndex).Trim();
+                var value = trimmed.Substring(eqIndex + 1).Trim();
+                if (customKeys.Contains(key))
+                {
+                    config[key] = value;
+                    continue;
+                }
+            }
+            dbParts.Add(trimmed);
+        }
+
+        return (string.Join(";", dbParts), config);
     }
 
     public ITreeNodeCollection GetRootNodes()
@@ -53,12 +99,14 @@ public class TreeEngine : ITreeEngine
 
     public void Invalidate(string nodeId)
     {
-        // Will be meaningful with caching provider
+        if (_provider is CachingProviderDecorator caching)
+            caching.Invalidate(nodeId);
     }
 
     public void Reload()
     {
-        // Will be meaningful with DB provider
+        if (_provider is CachingProviderDecorator caching)
+            caching.InvalidateAll();
     }
 
     private void EnsureProvider()
