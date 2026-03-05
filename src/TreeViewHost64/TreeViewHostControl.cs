@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.ComponentModel;
 using MeKo.TreeEngine;
+using WinTreeNode = System.Windows.Forms.TreeNode;
 
 namespace MeKo.TreeViewHost;
 
@@ -53,14 +55,19 @@ public class TreeViewHostControl : UserControl, ITreeViewHost
 
     // --- ITreeViewHost Properties ---
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [Browsable(false)]
     public object Engine
     {
         get => _engine;
         set => Initialize(value);
     }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [Browsable(false)]
     public string SelectedNodeId => _treeView.SelectedNode?.Name ?? "";
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     public bool CheckBoxes
     {
         get => _treeView.CheckBoxes;
@@ -212,9 +219,9 @@ public class TreeViewHostControl : UserControl, ITreeViewHost
 
     // --- Helpers ---
 
-    private TreeNode CreateVisualNode(ITreeNode data)
+    private WinTreeNode CreateVisualNode(ITreeNode data)
     {
-        var treeNode = new TreeNode(data.Caption)
+        var treeNode = new WinTreeNode(data.Caption)
         {
             Name = data.Id,
             Tag = data.Id,
@@ -231,7 +238,7 @@ public class TreeViewHostControl : UserControl, ITreeViewHost
         return treeNode;
     }
 
-    private TreeNode FindTreeNode(string nodeId)
+    private WinTreeNode FindTreeNode(string nodeId)
     {
         var found = _treeView.Nodes.Find(nodeId, searchAllChildren: true);
         return found.Length > 0 ? found[0] : null;
