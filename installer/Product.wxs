@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="MeKo TreeView for Access"
+           Manufacturer="MeKo-Tech"
+           Version="1.0.0.0"
+           UpgradeCode="E7F3A1B2-C4D5-6789-ABCD-EF0123456789"
+           Language="1033"
+           InstallerVersion="500">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of MeKo TreeView is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="MeKo TreeView" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="INSTALLFOLDER" Name="MeKo TreeView">
+      </Directory>
+    </StandardDirectory>
+
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="TreeEngine64" Guid="F1A2B3C4-D5E6-7890-ABCD-111111111111">
+        <File Id="TreeEngine64.dll" Source="$(var.TreeEngine64.TargetDir)\TreeEngine64.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="TreeViewHost64" Guid="F1A2B3C4-D5E6-7890-ABCD-222222222222">
+        <File Id="TreeViewHost64.dll" Source="$(var.TreeViewHost64.TargetDir)\TreeViewHost64.dll" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- COM Registration via regasm -->
+    <!-- Install: register both DLLs -->
+    <SetProperty Id="RegisterTreeEngine" Before="RegisterTreeEngine"
+                 Value="&quot;[WindowsFolder]Microsoft.NET\Framework64\v4.0.30319\regasm.exe&quot; /codebase &quot;[INSTALLFOLDER]TreeEngine64.dll&quot;"
+                 Sequence="execute" />
+    <CustomAction Id="RegisterTreeEngine" DllEntry="WixQuietExec64" BinaryRef="Wix4UtilCA_X64" Execute="deferred" Impersonate="no" />
+
+    <SetProperty Id="RegisterTreeViewHost" Before="RegisterTreeViewHost"
+                 Value="&quot;[WindowsFolder]Microsoft.NET\Framework64\v4.0.30319\regasm.exe&quot; /codebase &quot;[INSTALLFOLDER]TreeViewHost64.dll&quot; /tlb"
+                 Sequence="execute" />
+    <CustomAction Id="RegisterTreeViewHost" DllEntry="WixQuietExec64" BinaryRef="Wix4UtilCA_X64" Execute="deferred" Impersonate="no" />
+
+    <!-- Uninstall: unregister both DLLs -->
+    <SetProperty Id="UnregisterTreeEngine" Before="UnregisterTreeEngine"
+                 Value="&quot;[WindowsFolder]Microsoft.NET\Framework64\v4.0.30319\regasm.exe&quot; /unregister &quot;[INSTALLFOLDER]TreeEngine64.dll&quot;"
+                 Sequence="execute" />
+    <CustomAction Id="UnregisterTreeEngine" DllEntry="WixQuietExec64" BinaryRef="Wix4UtilCA_X64" Execute="deferred" Impersonate="no" />
+
+    <SetProperty Id="UnregisterTreeViewHost" Before="UnregisterTreeViewHost"
+                 Value="&quot;[WindowsFolder]Microsoft.NET\Framework64\v4.0.30319\regasm.exe&quot; /unregister &quot;[INSTALLFOLDER]TreeViewHost64.dll&quot;"
+                 Sequence="execute" />
+    <CustomAction Id="UnregisterTreeViewHost" DllEntry="WixQuietExec64" BinaryRef="Wix4UtilCA_X64" Execute="deferred" Impersonate="no" />
+
+    <InstallExecuteSequence>
+      <Custom Action="RegisterTreeEngine" After="InstallFiles">NOT Installed OR REINSTALL</Custom>
+      <Custom Action="RegisterTreeViewHost" After="RegisterTreeEngine">NOT Installed OR REINSTALL</Custom>
+      <Custom Action="UnregisterTreeViewHost" Before="RemoveFiles">REMOVE~="ALL"</Custom>
+      <Custom Action="UnregisterTreeEngine" After="UnregisterTreeViewHost">REMOVE~="ALL"</Custom>
+    </InstallExecuteSequence>
+  </Package>
+</Wix>
