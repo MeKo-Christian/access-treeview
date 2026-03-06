@@ -6,7 +6,7 @@
 - [ ] Demo database set up per demo/README.md
 
 ## COM Registration
-- [ ] `CreateObject("MeKo.TreeEngine")` succeeds in VBA Immediate window
+- [ ] `CreateObject("Access.TreeEngine")` succeeds in VBA Immediate window
 - [ ] TreeViewHost control appears in ActiveX control list
 
 ## Form Designer

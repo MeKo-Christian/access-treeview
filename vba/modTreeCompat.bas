@@ -14,7 +14,7 @@ Public Sub Tree_Init(ctl As Object, connectionString As String, _
                      Optional parentCol As String = "ParentID", _
                      Optional captionCol As String = "NodeText")
     Dim eng As Object
-    Set eng = CreateObject("MeKo.TreeEngine")
+    Set eng = CreateObject("Access.TreeEngine")
 
     ' Build extended connection string with column mappings
     Dim extConn As String

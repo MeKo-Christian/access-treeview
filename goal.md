@@ -11,7 +11,7 @@ In Access (64-bit) you can:
 
 # High-level architecture
 
-### Component 1 — TreeEngine64 (COM in-proc DLL)
+### Component 1 — AccessTreeEngine (COM in-proc DLL)
 
 **Purpose:** data + behavior
 
@@ -30,7 +30,7 @@ In Access (64-bit) you can:
 
 * A **WinForms UserControl** wrapping `System.Windows.Forms.TreeView`
 * Exposed to COM so Access can host it on a form (ActiveX-like)
-* Talks to `TreeEngine64` via COM
+* Talks to `AccessTreeEngine` via COM
 * Raises VBA events
 
 ---
@@ -61,7 +61,7 @@ Deliver a short spec so the new control is “as close as possible” to the old
 
 ---
 
-## Phase 1 — TreeEngine64 COM DLL (2–6 days)
+## Phase 1 — AccessTreeEngine COM DLL (2–6 days)
 
 ### 1.1 Object model
 
@@ -108,13 +108,13 @@ Lazy-loading design:
 
 ### 1.3 Versioning rules
 
-* Stable ProgID (e.g. `MeKo.TreeEngine`)
+* Stable ProgID (e.g. `Access.TreeEngine`)
 * New functionality: add new interfaces rather than breaking old signatures
 
 **Deliverables:**
 
-* `TreeEngine64.dll` (registered COM server)
-* Small VBA test module proving `CreateObject("MeKo.TreeEngine")` works
+* `AccessTreeEngine.dll` (registered COM server)
+* Small VBA test module proving `CreateObject("Access.TreeEngine")` works
 
 ---
 
@@ -227,7 +227,7 @@ You’ll need a proper installer. For 64-bit Access you must register 64-bit COM
 
 Package **both**:
 
-* TreeEngine64 (COM in-proc)
+* AccessTreeEngine (COM in-proc)
 * TreeViewHost64 (COM-visible control)
 
 ### 4.2 Registration

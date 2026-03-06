@@ -1,6 +1,6 @@
 # TreeView COM Contract
 
-## ITreeEngine (ProgId: MeKo.TreeEngine)
+## ITreeEngine (ProgId: Access.TreeEngine)
 
 ### Methods
 | Method | Signature | Description |
@@ -69,7 +69,7 @@ Dim WithEvents tvHost As TreeViewHost64.TreeViewHostControl
 
 Private Sub Form_Load()
     Dim eng As Object
-    Set eng = CreateObject("MeKo.TreeEngine")
+    Set eng = CreateObject("Access.TreeEngine")
     eng.Initialize "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=" & CurrentDb.Name
 
     Set tvHost = Me.ctlTreeView.Object

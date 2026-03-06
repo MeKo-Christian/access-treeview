@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MeKo.TreeEngine;
+namespace Access.TreeEngine;
 
 public interface ITreeDataProvider
 {

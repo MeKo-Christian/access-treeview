@@ -10,13 +10,13 @@ Attribute VB_Exposed = False
 Option Compare Database
 Option Explicit
 
-Dim WithEvents tvHost As TreeViewHost64.TreeViewHostControl
+Dim WithEvents tvHost As AccessTreeView.TreeViewHostControl
 
 Private Sub Form_Load()
     Set tvHost = Me.ctlTreeView.Object
 
     Dim eng As Object
-    Set eng = CreateObject("MeKo.TreeEngine")
+    Set eng = CreateObject("Access.TreeEngine")
 
     ' Point to demo table in this database
     Dim connStr As String

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace MeKo.TreeEngine;
+namespace Access.TreeEngine;
 
 [ComVisible(true)]
 [Guid("A1B2C3D4-3333-3333-3333-000000000001")]
-[ProgId("MeKo.TreeEngine")]
+[ProgId("Access.TreeEngine")]
 [ClassInterface(ClassInterfaceType.None)]
 public class TreeEngine : ITreeEngine
 {

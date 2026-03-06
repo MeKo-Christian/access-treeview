@@ -1,8 +1,8 @@
 using NUnit.Framework;
-using MeKo.TreeEngine;
+using Access.TreeEngine;
 using System.Collections.Generic;
 
-namespace TreeEngine64.Tests.Integration;
+namespace AccessTreeEngine.Tests.Integration;
 
 /// <summary>
 /// Integration tests that require Windows + Access database.

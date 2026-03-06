@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 
-namespace MeKo.TreeEngine;
+namespace Access.TreeEngine;
 
 /// <summary>
 /// Data provider that loads tree nodes from a database via ADO.NET.

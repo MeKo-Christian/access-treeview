@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TreeEngine64\TreeEngine64.csproj" />
+    <ProjectReference Include="..\..\src\AccessTreeEngine\AccessTreeEngine.csproj" />
   </ItemGroup>
 
 </Project>

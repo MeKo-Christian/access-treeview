@@ -6,7 +6,7 @@ A 64-bit TreeView ActiveX control for Microsoft Access, replacing the legacy MSC
 
 Two COM components work together:
 
-- **TreeEngine64** — data and logic (COM in-proc DLL). Loads tree nodes from a database, caches children, supports search. VBA calls it via `CreateObject("MeKo.TreeEngine")`.
+- **AccessTreeEngine** — data and logic (COM in-proc DLL). Loads tree nodes from a database, caches children, supports search. VBA calls it via `CreateObject("Access.TreeEngine")`.
 - **TreeViewHost64** — visual control (WinForms UserControl exposed as ActiveX). Wraps `System.Windows.Forms.TreeView`, lazy-loads children on expand, and raises VBA-compatible events via `WithEvents`.
 
 ## Quick Start (VBA)
@@ -16,7 +16,7 @@ Dim WithEvents tvHost As TreeViewHost64.TreeViewHostControl
 
 Private Sub Form_Load()
     Dim eng As Object
-    Set eng = CreateObject("MeKo.TreeEngine")
+    Set eng = CreateObject("Access.TreeEngine")
     eng.Initialize "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=" & CurrentDb.Name & _
                    ";Table=tblTreeNodes;IdCol=NodeID;ParentCol=ParentID;CaptionCol=NodeText"
 
@@ -41,10 +41,10 @@ End Sub
 
 ```
 src/
-  TreeEngine64/          Engine COM DLL (data, caching, search)
+  AccessTreeEngine/          Engine COM DLL (data, caching, search)
   TreeViewHost64/        Visual ActiveX control (WinForms)
 tests/
-  TreeEngine64.Tests/    Unit + integration tests (NUnit)
+  AccessTreeEngine.Tests/    Unit + integration tests (NUnit)
 vba/
   modTreeCompat.bas      Drop-in VBA helper functions
   Form_frmTreeDemo.cls   Demo form VBA module
@@ -67,8 +67,8 @@ docs/
 ### Engine (builds on Linux or Windows)
 
 ```bash
-dotnet build src/TreeEngine64/
-dotnet test tests/TreeEngine64.Tests/
+dotnet build src/AccessTreeEngine/
+dotnet test tests/AccessTreeEngine.Tests/
 ```
 
 ### Full solution (Windows only)
@@ -80,7 +80,7 @@ dotnet build MeKoTreeView.slnx
 ### COM Registration (Windows, admin)
 
 ```cmd
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe /codebase TreeEngine64.dll /tlb
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe /codebase AccessTreeEngine.dll /tlb
 C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe /codebase TreeViewHost64.dll /tlb
 ```
 
@@ -90,7 +90,7 @@ See [installer/README.md](installer/README.md) for MSI build instructions.
 
 ## API
 
-### TreeEngine (ProgId: `MeKo.TreeEngine`)
+### TreeEngine (ProgId: `Access.TreeEngine`)
 
 | Method | Description |
 |---|---|
@@ -145,10 +145,10 @@ The `Initialize` method accepts a standard OleDb/ODBC connection string with add
 
 ```bash
 # Unit tests (Linux or Windows)
-dotnet test tests/TreeEngine64.Tests/
+dotnet test tests/AccessTreeEngine.Tests/
 
 # Integration tests only (Windows with Access)
-dotnet test tests/TreeEngine64.Tests/ --filter Category=Integration
+dotnet test tests/AccessTreeEngine.Tests/ --filter Category=Integration
 ```
 
 57 unit tests, 7 integration tests (require Windows + Access OLEDB provider).

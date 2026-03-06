@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace MeKo.TreeEngine;
+namespace Access.TreeEngine;
 
 public class CachingProviderDecorator : ITreeDataProvider
 {

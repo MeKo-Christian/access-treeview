@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MeKo.TreeEngine;
+namespace Access.TreeEngine;
 
 public class InMemoryProvider : ITreeDataProvider
 {

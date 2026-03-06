@@ -1,9 +1,9 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/TreeEngine64/TreeEngine64.csproj" />
-    <Project Path="src/TreeViewHost64/TreeViewHost64.csproj" />
+    <Project Path="src/AccessTreeEngine/AccessTreeEngine.csproj" />
+    <Project Path="src/AccessTreeView/AccessTreeView.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests/TreeEngine64.Tests/TreeEngine64.Tests.csproj" />
+    <Project Path="tests/AccessTreeEngine.Tests/AccessTreeEngine.Tests.csproj" />
   </Folder>
 </Solution>

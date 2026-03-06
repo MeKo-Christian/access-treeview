@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using MeKo.TreeEngine;
+using Access.TreeEngine;
 
-namespace TreeEngine64.Tests;
+namespace AccessTreeEngine.Tests;
 
 [TestFixture]
 public class TreeEngineInterfaceTests

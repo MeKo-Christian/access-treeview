@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace MeKo.TreeEngine;
+namespace Access.TreeEngine;
 
 [ComVisible(true)]
 [Guid("A1B2C3D4-2222-2222-2222-000000000001")]

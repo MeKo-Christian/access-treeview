@@ -5,7 +5,7 @@
 
 **Goal:** Build a 64-bit TreeView ActiveX control for MS Access, backed by a COM engine DLL, replacing the legacy MSCOMCTL TreeView.
 
-**Architecture:** Two-component design — TreeEngine64 (data/logic COM DLL) + TreeViewHost64 (visual ActiveX control wrapping WinForms TreeView). Both registered as COM servers for VBA scripting via `WithEvents`.
+**Architecture:** Two-component design — AccessTreeEngine (data/logic COM DLL) + TreeViewHost64 (visual ActiveX control wrapping WinForms TreeView). Both registered as COM servers for VBA scripting via `WithEvents`.
 
 **Tech Stack:** C# (.NET 10.0 for dev, .NET Framework 4.8 for production), WinForms, COM Interop, WiX Toolset (installer)
 
@@ -34,9 +34,9 @@
 ### Task 0.2: Create Solution Structure
 
 - [x] Create `MeKoTreeView.slnx` (SDK used .slnx format)
-- [x] Create `src/TreeEngine64/TreeEngine64.csproj` (net10.0, x64)
+- [x] Create `src/AccessTreeEngine/AccessTreeEngine.csproj` (net10.0, x64)
 - [x] Create `src/TreeViewHost64/TreeViewHost64.csproj` (net10.0-windows, x64, WinForms)
-- [x] Create `tests/TreeEngine64.Tests/TreeEngine64.Tests.csproj` (NUnit)
+- [x] Create `tests/AccessTreeEngine.Tests/AccessTreeEngine.Tests.csproj` (NUnit)
 - [x] Add projects to solution
 - [x] Add .gitignore (standard .NET)
 - [x] Verify `dotnet build MeKoTreeView.slnx` succeeds
@@ -55,7 +55,7 @@
 
 ---
 
-## Phase 1 — TreeEngine64 COM DLL
+## Phase 1 — AccessTreeEngine COM DLL
 
 ### Task 1.1: Define COM Interfaces
 
@@ -90,7 +90,7 @@
 - [x] Run tests — verify FAIL
 - [x] Create `ITreeDataProvider.cs` interface
 - [x] Implement `InMemoryProvider.cs`
-- [x] Implement `TreeEngine.cs` with `[ProgId("MeKo.TreeEngine")]`
+- [x] Implement `TreeEngine.cs` with `[ProgId("Access.TreeEngine")]`
 - [x] Run tests — verify PASS
 - [x] Commit
 
@@ -115,7 +115,7 @@
 
 - [ ] Build in Release mode *(requires Windows)*
 - [ ] Register with `regasm /codebase /tlb` *(requires Windows)*
-- [ ] Test from VBA: `CreateObject("MeKo.TreeEngine")` returns object *(requires Windows)*
+- [ ] Test from VBA: `CreateObject("Access.TreeEngine")` returns object *(requires Windows)*
 - [ ] Commit
 
 ---
@@ -218,7 +218,7 @@
 
 - [x] Add `regasm /codebase` custom action on install for both DLLs
 - [x] Add `regasm /unregister` custom action on uninstall
-- [ ] Test install on clean Windows VM — `CreateObject("MeKo.TreeEngine")` works *(requires Windows)*
+- [ ] Test install on clean Windows VM — `CreateObject("Access.TreeEngine")` works *(requires Windows)*
 - [ ] Test uninstall — CreateObject fails as expected *(requires Windows)*
 - [x] Commit
 
