@@ -22,7 +22,7 @@ jobs:
 
       - name: Create release archive
         shell: pwsh
-        run: Compress-Archive -Path publish/*.dll -DestinationPath AccessTreeView-${{ github.ref_name }}.zip
+        run: Compress-Archive -Path publish/AccessTreeEngine.dll,publish/AccessTreeView.dll -DestinationPath AccessTreeView-${{ github.ref_name }}.zip
 
       - uses: softprops/action-gh-release@v2
         with:
