@@ -1,0 +1,33 @@
+name: Format Check
+
+on:
+  workflow_call:
+
+jobs:
+  dotnet-format:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+          dotnet-quality: "preview"
+
+      - run: dotnet format AccessTreeView.slnx --verify-no-changes
+
+  treefmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - run: npm install -g prettier
+
+      - uses: isbecker/treefmt-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          fail-on-change: true

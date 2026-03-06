@@ -1,0 +1,21 @@
+name: Can Build
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+          dotnet-quality: "preview"
+
+      - run: dotnet restore AccessTreeView.slnx
+
+      - run: dotnet build AccessTreeView.slnx -c Debug --no-restore
+
+      - run: dotnet test AccessTreeView.slnx -c Debug --no-build
