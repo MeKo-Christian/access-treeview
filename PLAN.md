@@ -1,4 +1,4 @@
-# MeKo TreeView — Implementation Plan
+# Access TreeView — Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 > **Detailed plan:** [docs/plans/2026-03-05-access-treeview.md](docs/plans/2026-03-05-access-treeview.md)

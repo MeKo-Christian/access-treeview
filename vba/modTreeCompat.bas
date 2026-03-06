@@ -2,7 +2,7 @@ Attribute VB_Name = "modTreeCompat"
 Option Compare Database
 Option Explicit
 
-' modTreeCompat - Drop-in helpers for MeKo TreeView
+' modTreeCompat - Drop-in helpers for Access TreeView
 ' Usage:
 '   Tree_Init Me.ctlTree, "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=..."
 '   Tree_SelectByKey Me.ctlTree, "42"

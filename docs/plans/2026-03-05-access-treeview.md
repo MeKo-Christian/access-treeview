@@ -1,4 +1,4 @@
-# MeKo TreeView — Implementation Plan
+# Access TreeView — Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
@@ -1612,7 +1612,7 @@ git commit -am "test: verify COM registration and Access form hosting"
 Option Compare Database
 Option Explicit
 
-' modTreeCompat — Drop-in helpers for MeKo TreeView
+' modTreeCompat — Drop-in helpers for Access TreeView
 ' Usage:
 '   Tree_Init Me.ctlTree, "Provider=Microsoft.ACE.OLEDB.16.0;..."
 '   Tree_SelectByKey Me.ctlTree, "42"
@@ -1757,7 +1757,7 @@ dotnet tool install --global wix
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="MeKo TreeView for Access"
+  <Package Name="Access TreeView for Access"
            Manufacturer="MeKo-Tech"
            Version="1.0.0.0"
            UpgradeCode="PUT-REAL-GUID-HERE">
@@ -1765,7 +1765,7 @@ dotnet tool install --global wix
     <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
-    <Feature Id="ProductFeature" Title="MeKo TreeView" Level="1">
+    <Feature Id="ProductFeature" Title="Access TreeView" Level="1">
       <ComponentGroupRef Id="TreeEngineComponents" />
       <ComponentGroupRef Id="TreeViewHostComponents" />
     </Feature>

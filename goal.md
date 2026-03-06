@@ -2,7 +2,7 @@
 
 In Access (64-bit) you can:
 
-* Place **MeKo TreeView** on a form (like an OCX control)
+* Place **Access TreeView** on a form (like an OCX control)
 * Bind it to your tree data source
 * Handle events in VBA (`NodeClick`, `Expand`, `Collapse`, etc.)
 * Keep your tree logic/data access out of the form and inside a **64-bit COM DLL**

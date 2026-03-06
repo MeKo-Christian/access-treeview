@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="MeKo TreeView for Access"
+  <Package Name="Access TreeView for Access"
            Manufacturer="MeKo-Tech"
            Version="1.0.0.0"
            UpgradeCode="E7F3A1B2-C4D5-6789-ABCD-EF0123456789"
            Language="1033"
            InstallerVersion="500">
 
-    <MajorUpgrade DowngradeErrorMessage="A newer version of MeKo TreeView is already installed." />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Access TreeView is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
-    <Feature Id="ProductFeature" Title="MeKo TreeView" Level="1">
+    <Feature Id="ProductFeature" Title="Access TreeView" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
     </Feature>
 
     <StandardDirectory Id="ProgramFiles6432Folder">
-      <Directory Id="INSTALLFOLDER" Name="MeKo TreeView">
+      <Directory Id="INSTALLFOLDER" Name="Access TreeView">
       </Directory>
     </StandardDirectory>
 
