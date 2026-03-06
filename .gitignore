@@ -30,3 +30,6 @@ project.fragment.lock.json
 ## OS files
 .DS_Store
 Thumbs.db
+
+# AI agents
+.claude/

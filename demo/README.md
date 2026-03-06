@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Windows with 64-bit MS Access
-- Both DLLs registered (AccessTreeEngine.dll and TreeViewHost64.dll)
+- Both DLLs registered (AccessTreeEngine.dll and AccessTreeView.dll)
 
 ## Demo Table
 

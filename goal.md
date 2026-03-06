@@ -24,7 +24,7 @@ In Access (64-bit) you can:
 * **C++/ATL** (best binary COM discipline) **or** **C# (.NET) COM-visible class library** (faster to build).
   Given you’re also building a .NET UI control, **C# is usually the fastest overall** (one ecosystem).
 
-### Component 2 — TreeViewHost64 (Visual ActiveX control)
+### Component 2 — AccessTreeView (Visual ActiveX control)
 
 **Purpose:** UI only
 
@@ -118,7 +118,7 @@ Lazy-loading design:
 
 ---
 
-## Phase 2 — TreeViewHost64 Visual ActiveX (4–10 days)
+## Phase 2 — AccessTreeView Visual ActiveX (4–10 days)
 
 This is the key Track 2 work.
 
@@ -192,7 +192,7 @@ The UI control never “builds” business logic. It:
 
 **Deliverables:**
 
-* `TreeViewHost64.dll` registered and insertable in Access form designer
+* `AccessTreeView.dll` registered and insertable in Access form designer
 * Demo Access form showing the control running off dummy data
 
 ---
@@ -228,7 +228,7 @@ You’ll need a proper installer. For 64-bit Access you must register 64-bit COM
 Package **both**:
 
 * AccessTreeEngine (COM in-proc)
-* TreeViewHost64 (COM-visible control)
+* AccessTreeView (COM-visible control)
 
 ### 4.2 Registration
 

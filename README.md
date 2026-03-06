@@ -7,12 +7,12 @@ A 64-bit TreeView ActiveX control for Microsoft Access, replacing the legacy MSC
 Two COM components work together:
 
 - **AccessTreeEngine** — data and logic (COM in-proc DLL). Loads tree nodes from a database, caches children, supports search. VBA calls it via `CreateObject("Access.TreeEngine")`.
-- **TreeViewHost64** — visual control (WinForms UserControl exposed as ActiveX). Wraps `System.Windows.Forms.TreeView`, lazy-loads children on expand, and raises VBA-compatible events via `WithEvents`.
+- **AccessTreeView** — visual control (WinForms UserControl exposed as ActiveX). Wraps `System.Windows.Forms.TreeView`, lazy-loads children on expand, and raises VBA-compatible events via `WithEvents`.
 
 ## Quick Start (VBA)
 
 ```vba
-Dim WithEvents tvHost As TreeViewHost64.TreeViewHostControl
+Dim WithEvents tvHost As AccessTreeView.TreeViewHostControl
 
 Private Sub Form_Load()
     Dim eng As Object
@@ -42,7 +42,7 @@ End Sub
 ```
 src/
   AccessTreeEngine/          Engine COM DLL (data, caching, search)
-  TreeViewHost64/        Visual ActiveX control (WinForms)
+  AccessTreeView/        Visual ActiveX control (WinForms)
 tests/
   AccessTreeEngine.Tests/    Unit + integration tests (NUnit)
 vba/
@@ -62,7 +62,7 @@ docs/
 ### Prerequisites
 
 - .NET 10 SDK (or .NET 8+)
-- Windows required for TreeViewHost64 (WinForms) and COM registration
+- Windows required for AccessTreeView (WinForms) and COM registration
 
 ### Engine (builds on Linux or Windows)
 
@@ -81,7 +81,7 @@ dotnet build MeKoTreeView.slnx
 
 ```cmd
 C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe /codebase AccessTreeEngine.dll /tlb
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe /codebase TreeViewHost64.dll /tlb
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe /codebase AccessTreeView.dll /tlb
 ```
 
 ### Installer

@@ -5,7 +5,7 @@
 
 **Goal:** Build a 64-bit TreeView ActiveX control for MS Access, backed by a COM engine DLL, replacing the legacy MSCOMCTL TreeView.
 
-**Architecture:** Two-component design — AccessTreeEngine (data/logic COM DLL) + TreeViewHost64 (visual ActiveX control wrapping WinForms TreeView). Both registered as COM servers for VBA scripting via `WithEvents`.
+**Architecture:** Two-component design — AccessTreeEngine (data/logic COM DLL) + AccessTreeView (visual ActiveX control wrapping WinForms TreeView). Both registered as COM servers for VBA scripting via `WithEvents`.
 
 **Tech Stack:** C# (.NET 10.0 for dev, .NET Framework 4.8 for production), WinForms, COM Interop, WiX Toolset (installer)
 
@@ -35,7 +35,7 @@
 
 - [x] Create `MeKoTreeView.slnx` (SDK used .slnx format)
 - [x] Create `src/AccessTreeEngine/AccessTreeEngine.csproj` (net10.0, x64)
-- [x] Create `src/TreeViewHost64/TreeViewHost64.csproj` (net10.0-windows, x64, WinForms)
+- [x] Create `src/AccessTreeView/AccessTreeView.csproj` (net10.0-windows, x64, WinForms)
 - [x] Create `tests/AccessTreeEngine.Tests/AccessTreeEngine.Tests.csproj` (NUnit)
 - [x] Add projects to solution
 - [x] Add .gitignore (standard .NET)
@@ -120,7 +120,7 @@
 
 ---
 
-## Phase 2 — TreeViewHost64 Visual ActiveX Control
+## Phase 2 — AccessTreeView Visual ActiveX Control
 
 ### Task 2.1: Define Host Interfaces
 

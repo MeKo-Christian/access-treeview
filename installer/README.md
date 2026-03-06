@@ -19,9 +19,9 @@ wix build installer/Product.wxs -o installer/MeKoTreeView.msi
 ## What It Does
 
 ### Install
-1. Copies AccessTreeEngine.dll and TreeViewHost64.dll to Program Files
+1. Copies AccessTreeEngine.dll and AccessTreeView.dll to Program Files
 2. Runs `regasm /codebase` on AccessTreeEngine.dll (COM registration)
-3. Runs `regasm /codebase /tlb` on TreeViewHost64.dll (COM + type library registration)
+3. Runs `regasm /codebase /tlb` on AccessTreeView.dll (COM + type library registration)
 
 ### Uninstall
 1. Runs `regasm /unregister` on both DLLs

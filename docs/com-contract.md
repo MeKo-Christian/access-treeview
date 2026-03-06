@@ -65,7 +65,7 @@
 ## VBA Usage Example
 
 ```vba
-Dim WithEvents tvHost As TreeViewHost64.TreeViewHostControl
+Dim WithEvents tvHost As AccessTreeView.TreeViewHostControl
 
 Private Sub Form_Load()
     Dim eng As Object
