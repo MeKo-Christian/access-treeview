@@ -4,3 +4,8 @@ excludes = ["**/obj/**", "**/bin/**", "**/out/**"]
 # dotnet format operates on the whole solution, not individual files.
 # Use `just fmt` for C# formatting.
 # treefmt handles everything else.
+
+[formatter.prettier]
+command = "prettier"
+args = ["--write"]
+includes = ["*.md", "*.json", "*.yml", "*.yaml"]

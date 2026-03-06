@@ -33,3 +33,6 @@ Thumbs.db
 
 # AI agents
 .claude/
+
+# IPOffice-specific drop-in (not for public repo)
+ipoffice/

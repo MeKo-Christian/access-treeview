@@ -31,13 +31,15 @@ clean:
 restore:
     dotnet restore {{ solution }}
 
-# Format code with dotnet format
+# Format all files (C# via dotnet format, markdown/json/yaml via prettier)
 fmt:
     dotnet format {{ solution }}
+    treefmt
 
 # Check formatting without making changes
 fmt-check:
     dotnet format {{ solution }} --verify-no-changes
+    treefmt --fail-on-change
 
 # Build the MSI installer (requires WiX Toolset)
 installer: release
